@@ -4,3 +4,9 @@ node_modules
 /build
 /public/build
 .env
+
+## Panda
+app/styled-system
+app/styled-system-studio
+
+.DS_Store
