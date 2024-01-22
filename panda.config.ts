@@ -26,7 +26,7 @@ export default defineConfig({
         },
         colors: {
           brand: {
-            value: "#e61a4c",
+            value: "#e173ff",
           },
           "gray.50": {
             value: "#fafafa",
