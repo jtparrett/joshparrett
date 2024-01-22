@@ -4,6 +4,7 @@ import { IoLogoGithub, IoLogoLinkedin, IoLogoTwitter } from "react-icons/io5";
 import { ROLES } from "~/utils/roles";
 import { Role } from "~/components/Roles";
 import { Tags } from "~/components/Tags";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 export const meta: MetaFunction = () => {
   return [
@@ -13,42 +14,54 @@ export const meta: MetaFunction = () => {
 };
 
 export default function Index() {
+  const { scrollY } = useScroll();
+  const translateY = useTransform(scrollY, [0, 200], [0, 40]);
+  const opacity = useTransform(scrollY, [0, 200], [1, 0]);
+
   return (
     <Container py={12} maxW={900}>
-      <Box
-        flex={1}
-        pos="relative"
-        zIndex={1}
-        _after={{
-          content: '""',
-          h: 1,
-          bgColor: "brand",
-          w: 280,
-          pos: "absolute",
-          bottom: 18,
-          zIndex: -1,
-          left: -4,
+      <motion.div
+        style={{
+          translateY,
+          transformOrigin: "bottom left",
+          opacity,
         }}
       >
-        <styled.h1
-          fontWeight="black"
-          fontSize={{ base: "5xl", md: "7xl" }}
-          textTransform="uppercase"
-          lineHeight={0.8}
+        <Box
+          flex={1}
+          pos="relative"
+          zIndex={1}
+          _after={{
+            content: '""',
+            h: 1,
+            bgColor: "brand",
+            w: 280,
+            pos: "absolute",
+            bottom: 18,
+            zIndex: -1,
+            left: -4,
+          }}
         >
-          <styled.span
-            fontWeight="medium"
-            fontSize="2xl"
-            textTransform="capitalize"
+          <styled.h1
+            fontWeight="black"
+            fontSize={{ base: "5xl", md: "7xl" }}
+            textTransform="uppercase"
+            lineHeight={0.8}
           >
-            Josh Parrett's
-          </styled.span>
-          <br />
-          Curriculum
-          <br />
-          Vitae
-        </styled.h1>
-      </Box>
+            <styled.span
+              fontWeight="medium"
+              fontSize="2xl"
+              textTransform="capitalize"
+            >
+              Josh Parrett's
+            </styled.span>
+            <br />
+            Curriculum
+            <br />
+            Vitae
+          </styled.h1>
+        </Box>
+      </motion.div>
 
       <Flex
         pt={8}
@@ -139,7 +152,7 @@ export default function Index() {
           Roles
         </styled.h2>
 
-        <Flex flexDir="column" gap={6}>
+        <Flex flexDir="column" gap={8}>
           {ROLES.map((role) => (
             <Role key={role.date} role={role} />
           ))}

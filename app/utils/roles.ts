@@ -78,7 +78,7 @@ my primary role has included removing large amounts of code debt in replacement 
 
   {
     company: "Rawnet ONE",
-    title: "Senior Javascript product Developer",
+    title: "Senior Javascript Product Developer",
     date: "2017 - 2019",
     tools:
       "React, React Native, Redux, Objective C, ES6, Node, Json Api,GraphQL, Apollo Client, Serverless, AWS",
