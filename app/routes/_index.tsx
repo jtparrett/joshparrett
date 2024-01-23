@@ -95,7 +95,7 @@ export default function Index() {
         </styled.p>
 
         <Box
-          rounded="lg"
+          rounded="2xl"
           overflow="hidden"
           w={240}
           pos="relative"
