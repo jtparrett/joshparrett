@@ -1,65 +1,61 @@
 import { defineConfig } from "@pandacss/dev";
 
 export default defineConfig({
-  // Whether to use css reset
   preflight: true,
-
-  // The extension for the emitted JavaScript files
   outExtension: "js",
-  // Where to look for your css declarations
   include: [
     "./app/routes/**/*.{ts,tsx,js,jsx}",
     "./app/components/**/*.{ts,tsx,js,jsx}",
   ],
-
-  // Files to exclude
   exclude: [],
 
-  // Useful for theme customization
   theme: {
     extend: {
       tokens: {
         fonts: {
           body: {
-            value: '"ClashDisplay-Variable", sans-serif',
+            value: '"Inter", sans-serif',
           },
         },
         colors: {
           brand: {
-            value: "#e173ff",
+            value: "#000000",
+          },
+          accent: {
+            value: "#6366f1",
           },
           "gray.50": {
             value: "#fafafa",
           },
           "gray.100": {
-            value: "#f4f4f5",
+            value: "#f5f5f5",
           },
           "gray.200": {
-            value: "#e4e4e7",
+            value: "#e5e5e5",
           },
           "gray.300": {
-            value: "#d4d4d8",
+            value: "#d4d4d4",
           },
           "gray.400": {
-            value: "#a1a1aa",
+            value: "#a3a3a3",
           },
           "gray.500": {
-            value: "#71717a",
+            value: "#737373",
           },
           "gray.600": {
-            value: "#52525b",
+            value: "#525252",
           },
           "gray.700": {
-            value: "#3f3f46",
+            value: "#404040",
           },
           "gray.800": {
-            value: "#27272a",
+            value: "#262626",
           },
           "gray.900": {
-            value: "#18181b",
+            value: "#171717",
           },
           "gray.950": {
-            value: "#09090b",
+            value: "#0a0a0a",
           },
         },
       },
@@ -68,15 +64,22 @@ export default defineConfig({
 
   globalCss: {
     html: {
-      backgroundColor: "gray.950",
-      color: "white",
+      backgroundColor: "white",
+      color: "gray.900",
       fontFamily: "body",
-      lineHeight: 1.2,
+      lineHeight: 1.6,
+      letterSpacing: "-0.02em",
+    },
+    "*, *::before, *::after": {
+      boxSizing: "border-box",
+    },
+    body: {
+      margin: 0,
+      WebkitFontSmoothing: "antialiased",
+      MozOsxFontSmoothing: "grayscale",
     },
   },
 
-  // The output directory for your css system
   outdir: "./app/styled-system",
-
   jsxFramework: "react",
 });
