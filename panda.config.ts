@@ -16,6 +16,9 @@ export default defineConfig({
           body: {
             value: '"Inter", sans-serif',
           },
+          mono: {
+            value: '"Geist Mono", monospace',
+          },
         },
         colors: {
           brand: {

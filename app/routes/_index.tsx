@@ -2,6 +2,7 @@ import type { MetaFunction } from "@remix-run/node";
 import { css } from "../styled-system/css";
 import { motion } from "framer-motion";
 import { DashedDivider } from "~/components/DashedDivider";
+import { Container, Spacer } from "~/styled-system/jsx";
 
 export const meta: MetaFunction = () => {
   return [
@@ -33,6 +34,7 @@ const stagger = {
 const roles = [
   {
     company: "Specter",
+    url: "https://tryspecter.com",
     title: "Lead Product Engineer",
     period: "February 2024 — Present",
     tech: ["Claude", "Cursor", "React", "Remix", "React Router", "Node.js"],
@@ -41,6 +43,7 @@ const roles = [
   },
   {
     company: "Thursday",
+    url: "https://www.getthursday.com",
     title: "Senior Engineer",
     period: "December 2022 — December 2023",
     tech: [
@@ -57,6 +60,7 @@ const roles = [
   },
   {
     company: "Specter",
+    url: "https://tryspecter.com",
     title: "Lead Platform Engineer",
     period: "March 2022 — December 2022",
     tech: ["React", "Remix", "TypeScript", "React Query", "Supabase", "Prisma"],
@@ -65,6 +69,7 @@ const roles = [
   },
   {
     company: "Thursday",
+    url: "https://www.getthursday.com",
     title: "Senior Javascript Engineer",
     period: "September 2021 — March 2022",
     tech: [
@@ -96,6 +101,7 @@ const roles = [
   },
   {
     company: "Du.co",
+    url: "https://du.co/",
     title: "Senior Javascript Engineer",
     period: "October 2019 — January 2021",
     tech: ["React", "TypeScript", "Jest", "GraphQL", "Apollo Client"],
@@ -104,6 +110,7 @@ const roles = [
   },
   {
     company: "Beatchain",
+    url: "https://www.beatchain.com/",
     title: "Senior Fullstack Javascript Developer",
     period: "July 2019 — October 2019",
     tech: [
@@ -120,6 +127,7 @@ const roles = [
   },
   {
     company: "Rota",
+    url: "https://app.rota.com",
     title: "Fullstack Javascript Developer",
     period: "March 2019 — July 2019",
     tech: ["React", "React Native", "Redux", "Node.js", "GraphQL", "AWS"],
@@ -128,6 +136,7 @@ const roles = [
   },
   {
     company: "Rawnet ONE",
+    url: "https://thisisone.tv/",
     title: "Senior Javascript Product Developer",
     period: "2017 — 2019",
     tech: [
@@ -144,6 +153,7 @@ const roles = [
   },
   {
     company: "Rawnet Ltd",
+    url: "https://www.rawnet.com/",
     title: "Frontend Developer",
     period: "2014 — 2017",
     tech: [
@@ -203,15 +213,12 @@ const skills = [
 
 export default function Index() {
   return (
-    <div
-      className={css({
-        maxWidth: "780px",
-        margin: "0 auto",
-        padding: "0 24px",
-        borderLeftWidth: "1px",
-        borderRightWidth: "1px",
-        borderColor: "gray.100",
-      })}
+    <Container
+      px={0}
+      maxW="780px"
+      borderLeftWidth="1px"
+      borderRightWidth="1px"
+      borderColor="gray.100"
     >
       {/* Hero */}
       <motion.section
@@ -221,6 +228,7 @@ export default function Index() {
         className={css({
           paddingTop: "120px",
           paddingBottom: "80px",
+          paddingX: "24px",
         })}
       >
         <motion.div
@@ -301,12 +309,7 @@ export default function Index() {
       <DashedDivider />
 
       {/* Experience */}
-      <section
-        className={css({
-          paddingTop: "64px",
-          paddingBottom: "64px",
-        })}
-      >
+      <section>
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -314,9 +317,9 @@ export default function Index() {
           variants={fadeUp}
           className={css({
             display: "flex",
-            justifyContent: "space-between",
-            alignItems: "baseline",
-            marginBottom: "48px",
+            alignItems: "center",
+            px: 6,
+            py: 4,
           })}
         >
           <h2
@@ -325,11 +328,13 @@ export default function Index() {
               fontWeight: 500,
               letterSpacing: "0.08em",
               textTransform: "uppercase",
-              color: "gray.400",
+              color: "gray.500",
+              fontFamily: "mono",
             })}
           >
-            Experience
+            <span className={css({ color: "gray.400" })}>[01]</span> Experience
           </h2>
+          <Spacer />
           <span
             className={css({
               fontSize: "12px",
@@ -337,6 +342,7 @@ export default function Index() {
               letterSpacing: "0.08em",
               textTransform: "uppercase",
               color: "gray.400",
+              fontFamily: "mono",
             })}
           >
             2012 — Present
@@ -360,8 +366,9 @@ export default function Index() {
               className={css({
                 paddingTop: "32px",
                 paddingBottom: "32px",
-                borderTop: "1px solid",
+                borderTopWidth: 1,
                 borderColor: "gray.100",
+                paddingX: "24px",
               })}
             >
               <div
@@ -382,7 +389,25 @@ export default function Index() {
                     color: "gray.900",
                   })}
                 >
-                  {role.company}{" "}
+                  {"url" in role && role.url ? (
+                    <a
+                      href={role.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={css({
+                        color: "inherit",
+                        textDecoration: "none",
+                        borderBottomWidth: 1,
+                        borderColor: "gray.200",
+                        _hover: { bg: "gray.100" },
+                      })}
+                    >
+                      {role.company}{" "}
+                      <span className={css({ fontSize: "12px" })}>↗</span>
+                    </a>
+                  ) : (
+                    role.company
+                  )}{" "}
                   <span
                     className={css({
                       fontWeight: 400,
@@ -444,7 +469,7 @@ export default function Index() {
                       color: "gray.500",
                       padding: "3px 10px",
                       borderRadius: "100px",
-                      border: "1px solid",
+                      borderWidth: 1,
                       borderColor: "gray.200",
                       whiteSpace: "nowrap",
                     })}
@@ -462,28 +487,33 @@ export default function Index() {
       <DashedDivider />
 
       {/* Skills */}
-      <section
-        className={css({
-          paddingTop: "64px",
-          paddingBottom: "64px",
-        })}
-      >
-        <motion.h2
+      <section>
+        <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-60px" }}
           variants={fadeUp}
           className={css({
-            fontSize: "12px",
-            fontWeight: 500,
-            letterSpacing: "0.08em",
-            textTransform: "uppercase",
-            color: "gray.400",
-            marginBottom: "32px",
+            px: 6,
+            py: 4,
+            borderBottomWidth: 1,
+            borderColor: "gray.100",
           })}
         >
-          Skills & Tools
-        </motion.h2>
+          <h2
+            className={css({
+              fontSize: "12px",
+              fontWeight: 500,
+              letterSpacing: "0.08em",
+              textTransform: "uppercase",
+              color: "gray.500",
+              fontFamily: "mono",
+            })}
+          >
+            <span className={css({ color: "gray.400" })}>[02]</span> Skills &
+            Tools
+          </h2>
+        </motion.div>
 
         <motion.div
           initial="hidden"
@@ -494,6 +524,8 @@ export default function Index() {
             display: "flex",
             flexWrap: "wrap",
             gap: "8px",
+            px: 6,
+            py: 10,
           })}
         >
           {skills.map((skill) => (
@@ -507,7 +539,7 @@ export default function Index() {
                 padding: "6px 16px",
                 borderRadius: "100px",
                 backgroundColor: "gray.50",
-                border: "1px solid",
+                borderWidth: 1,
                 borderColor: "gray.200",
                 whiteSpace: "nowrap",
               })}
@@ -522,35 +554,45 @@ export default function Index() {
       <DashedDivider />
 
       {/* Contact */}
-      <motion.footer
+      <motion.section
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-40px" }}
         variants={stagger}
-        className={css({
-          paddingTop: "64px",
-          paddingBottom: "120px",
-        })}
       >
-        <motion.h2
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-60px" }}
           variants={fadeUp}
           className={css({
-            fontSize: "12px",
-            fontWeight: 500,
-            letterSpacing: "0.08em",
-            textTransform: "uppercase",
-            color: "gray.400",
-            marginBottom: "32px",
+            px: 6,
+            py: 4,
+            borderBottomWidth: 1,
+            borderColor: "gray.100",
           })}
         >
-          Get in touch
-        </motion.h2>
+          <h2
+            className={css({
+              fontSize: "12px",
+              fontWeight: 500,
+              letterSpacing: "0.08em",
+              textTransform: "uppercase",
+              color: "gray.500",
+              fontFamily: "mono",
+            })}
+          >
+            <span className={css({ color: "gray.400" })}>[03]</span> Contact
+          </h2>
+        </motion.div>
 
         <div
           className={css({
             display: "flex",
             flexDirection: "column",
             gap: "12px",
+            px: 6,
+            py: 10,
           })}
         >
           <motion.a
@@ -565,13 +607,16 @@ export default function Index() {
               display: "inline-flex",
               alignItems: "center",
               gap: "8px",
+              borderBottomWidth: 1,
+              borderColor: "gray.200",
+              width: "fit-content",
               _hover: {
-                color: "gray.600",
+                bg: "gray.100",
               },
               transition: "color 0.2s ease",
             })}
           >
-            Jtparrett@me.com
+            JTParrett@me.com
             <span className={css({ fontSize: "14px", color: "gray.400" })}>
               ↗
             </span>
@@ -591,19 +636,41 @@ export default function Index() {
               display: "inline-flex",
               alignItems: "center",
               gap: "8px",
+              borderBottomWidth: 1,
+              borderColor: "gray.200",
+              width: "fit-content",
               _hover: {
-                color: "gray.600",
+                bg: "gray.100",
               },
               transition: "color 0.2s ease",
             })}
           >
-            github.com/JTParrett
+            Github.com/JTParrett
             <span className={css({ fontSize: "14px", color: "gray.400" })}>
               ↗
             </span>
           </motion.a>
         </div>
+      </motion.section>
+
+      <motion.footer
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-40px" }}
+        variants={stagger}
+        className={css({
+          py: 2,
+          textAlign: "center",
+          borderTopWidth: 1,
+          borderBottomWidth: 1,
+          borderColor: "gray.100",
+          bg: "gray.50",
+        })}
+      >
+        <p className={css({ fontSize: "12px", color: "gray.400" })}>
+          &copy; {new Date().getFullYear()} Josh Parrett. All rights reserved.
+        </p>
       </motion.footer>
-    </div>
+    </Container>
   );
 }

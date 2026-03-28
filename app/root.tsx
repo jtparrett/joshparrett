@@ -24,6 +24,10 @@ export const links: LinksFunction = () => [
     rel: "stylesheet",
     href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap",
   },
+  {
+    rel: "stylesheet",
+    href: "https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&display=swap",
+  },
 ];
 
 export default function App() {
